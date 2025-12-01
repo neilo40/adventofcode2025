@@ -12,8 +12,6 @@ import (
 	"time"
 )
 
-const session = ""
-
 func DownloadInput() {
 	fInfo, _ := os.Stat("input.txt")
 	if fInfo != nil {
@@ -25,7 +23,7 @@ func DownloadInput() {
 	dNum, _ := strconv.Atoi(strings.TrimPrefix(d, "day"))
 	req, _ := http.NewRequest(http.MethodGet, fmt.Sprintf("https://adventofcode.com/2025/day/%d/input", dNum), nil)
 	cookie := new(http.Cookie)
-	cookie.Name, cookie.Value = "session", session
+	cookie.Name, cookie.Value = "session", os.Getenv("AOC_SESSION")
 	req.AddCookie(cookie)
 	req.Header.Set("User-Agent", "neilo40's golang client")
 	c := &http.Client{Timeout: 60 * time.Second}
