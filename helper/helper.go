@@ -35,3 +35,14 @@ func DownloadInput() {
 	bodyBytes, _ := io.ReadAll(r.Body)
 	os.WriteFile("input.txt", bodyBytes, 0644)
 }
+
+func AbsInt(x int) int {
+	if x < 0 {
+		return 0 - x
+	}
+	return x
+}
+
+func SqInt(x int) int {
+	return x * x
+}
